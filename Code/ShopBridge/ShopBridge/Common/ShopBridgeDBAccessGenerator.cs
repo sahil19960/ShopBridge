@@ -8,11 +8,17 @@ namespace ShopBridgeDBAccess.Common
     /// </summary>
     public static class ShopBridgeDBAccessGenerator
     {
-        public static IItemRepository ItemRepository { get; set; }
+        private static ItemRepository _itemRepository;
+        public static IItemRepository ItemRepository {
+            get
+            {
+                if(_itemRepository == null)
+                {
+                    _itemRepository = new ItemRepository();
+                }
 
-        static ShopBridgeDBAccessGenerator()
-        {
-            ItemRepository = new ItemRepository();
+                return _itemRepository;
+            }
         }
     }
 }
